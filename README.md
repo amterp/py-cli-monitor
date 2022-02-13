@@ -25,9 +25,9 @@ optional arguments:
                         Output directory to save screenshots.
 ```
 
-Note that the durations can be specified as decimals e.g. 4.5 minutes to get 4 minutes and 30 seconds.
-
-Note also that, as a safety, the tool prevents intervals less than 100 millis. This is mainly to protect the user from wrongfully thinking the interval is specified in seconds and flooding their directory with screenshots.
+- Durations can be specified as decimals e.g. 4.5 minutes to get 4 minutes and 30 seconds.
+- As a safety, the tool prevents intervals less than 100 millis. This is mainly to protect the user from wrongfully thinking the interval is specified in seconds and flooding their directory with screenshots.
+- Screenshots are named according to the following format: `yyyyMMdd-HHmmss-SSS.png`.
 
 ```console
 > python monitor.py 2
