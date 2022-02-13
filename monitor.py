@@ -21,6 +21,14 @@ arg_parser.add_argument(
     help="Interval in milliseconds to take screenshots.",
 )
 arg_parser.add_argument(
+    "-H",
+    "--duration_hours",
+    dest="duration_hours",
+    nargs="?",
+    type=float,
+    help="The duration in hours to run the monitor. Will be summed with other durations, if specified.",
+)
+arg_parser.add_argument(
     "-m",
     "--duration_minutes",
     dest="duration_minutes",
@@ -58,6 +66,9 @@ if interval_millis < 100:
     exit(1)
 interval_seconds = interval_millis / 1000
 
+hours: timedelta = (
+    timedelta(hours=args.duration_hours) if args.duration_hours != None else NO_TIME
+)
 minutes: timedelta = (
     timedelta(minutes=args.duration_minutes)
     if args.duration_minutes != None
@@ -69,7 +80,7 @@ seconds: timedelta = (
     else NO_TIME
 )
 
-duration_sum: timedelta = minutes + seconds
+duration_sum: timedelta = hours + minutes + seconds
 
 stop_time = time() + duration_sum.total_seconds()
 if duration_sum == NO_TIME:
