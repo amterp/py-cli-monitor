@@ -18,7 +18,7 @@ arg_parser = ArgumentParser()
 arg_parser.add_argument(
     "interval_millis",
     type=int,
-    help="Interval in milliseconds to take screenshots.",
+    help="Interval in milliseconds to take screenshots. Must be >= 100.",
 )
 arg_parser.add_argument(
     "-H",
@@ -64,7 +64,7 @@ LOGGER.debug("Arguments: %s", args)
 interval_millis: int = args.interval_millis
 if interval_millis < 100:
     LOGGER.error(
-        f"Safety triggered: interval is in milliseconds, rejecting input ({interval_millis}) < 100ms"
+        f"Safety triggered: interval is in milliseconds (not seconds), rejecting input ({interval_millis}) < 100ms. Quitting..."
     )
     exit(1)
 interval_seconds = interval_millis / 1000
