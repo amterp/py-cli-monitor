@@ -7,9 +7,9 @@ from time import sleep, time
 NO_TIME = timedelta(0)
 
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.DEBUG)
+LOGGER.setLevel(logging.INFO)
 logging.basicConfig(
-    format="%(asctime)s.%(msecs)03d %(levelname)s %(module)s %(funcName)s:: %(message)s",
+    format="%(asctime)s.%(msecs)03d %(module)s %(levelname)s: %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
