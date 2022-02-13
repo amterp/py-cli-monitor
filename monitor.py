@@ -27,6 +27,7 @@ arg_parser.add_argument(
     nargs="?",
     type=float,
     help="The duration in hours to run the monitor. Will be summed with other durations, if specified.",
+    default=0,
 )
 arg_parser.add_argument(
     "-m",
@@ -35,6 +36,7 @@ arg_parser.add_argument(
     nargs="?",
     type=float,
     help="The duration in minutes to run the monitor. Will be summed with other durations, if specified.",
+    default=0,
 )
 arg_parser.add_argument(
     "-s",
@@ -43,6 +45,7 @@ arg_parser.add_argument(
     nargs="?",
     type=float,
     help="The duration in seconds to run the monitor. Will be summed with other durations, if specified.",
+    default=0,
 )
 arg_parser.add_argument(
     "-o",
@@ -66,19 +69,9 @@ if interval_millis < 100:
     exit(1)
 interval_seconds = interval_millis / 1000
 
-hours: timedelta = (
-    timedelta(hours=args.duration_hours) if args.duration_hours != None else NO_TIME
-)
-minutes: timedelta = (
-    timedelta(minutes=args.duration_minutes)
-    if args.duration_minutes != None
-    else NO_TIME
-)
-seconds: timedelta = (
-    timedelta(seconds=args.duration_seconds)
-    if args.duration_seconds != None
-    else NO_TIME
-)
+hours: timedelta = timedelta(hours=args.duration_hours)
+minutes: timedelta = timedelta(minutes=args.duration_minutes)
+seconds: timedelta = timedelta(seconds=args.duration_seconds)
 
 duration_sum: timedelta = hours + minutes + seconds
 
